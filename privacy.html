@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>プライバシーポリシー | 知るセカイ YouTube API（草案）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <a class="brand" href="index.html">知るセカイ <span>YouTube API</span></a>
+      <nav aria-label="サイト">
+        <a href="index.html">説明</a>
+        <a aria-current="page" href="privacy.html">プライバシー</a>
+        <a href="terms.html">利用条件</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap prose">
+    <p class="draft">公開前レビュー用の草案 · 2026年11月11日</p>
+    <h1>プライバシーポリシー</h1>
+    <p class="lead">この草案は、知るセカイ YouTube APIのローカルツールと、将来公開する説明ページで扱う情報を記載します。公開先と連絡先が未確定のため、現在は有効な公開ポリシーではありません。</p>
+
+    <section>
+      <h2>対象と目的</h2>
+      <p>このツールはチャンネル運営者本人が自分のMacで使うPython CLIです。本人が管理するYouTubeチャンネルの動画状態やメタデータを確認し、本人が確認した変更を適用し、チャンネル運営と動画企画に必要な集計指標をローカルで分析します。一般向けアカウント登録、第三者チャンネルの代理運用、広告配信、データ販売を行う機能は実装されていません。</p>
+    </section>
+
+    <section>
+      <h2>アクセスする情報と権限</h2>
+      <div class="scope">
+        <h3><code>youtube.force-ssl</code> · 動画編集用の同意</h3>
+        <p>GoogleのOAuth同意画面では、YouTube動画・評価・コメント・字幕の表示、編集、完全削除を含む権限として示されます。この権限が可能にする範囲と、現在のCLIに実装された機能は同じではありません。</p>
+        <p>実装上は、本人のチャンネル・動画ID・タイトル・概要欄・カテゴリ・言語・公開状態・予約日時などを読み取ります。確認済みの計画に基づく動画メタデータと予約の更新、公開コメントの重複確認、公開動画へのトップレベル質問コメント投稿に対応しています。動画ファイルのアップロード、動画の削除、評価や字幕の編集は実装されていません。</p>
+        <p>コメントの重複確認では、YouTube APIの応答に含まれるコメント本文や投稿者情報が処理中に一時的に渡され、投稿者のチャンネル識別子と本文を照合します。照合用に取得したコメント一覧をローカル記録へ保存する処理は確認していません。投稿するコメントは、運営者が確認して明示的に実行した場合にYouTube上で公開されます。</p>
+      </div>
+      <div class="scope">
+        <h3><code>yt-analytics.readonly</code> と <code>youtube.readonly</code> · 別の読み取り専用同意</h3>
+        <p>Analyticsの認可・更新トークンは動画編集用とは別のOAuth同意と別のKeychain項目で管理します。AnalyticsのレポートはYouTubeへの書き込みをしません。</p>
+        <p>取得する集計指標は視聴回数、エンゲージビュー、推定総再生時間、平均視聴時間・割合、登録者の増減、高評価・コメント・共有数などです。レポートは日別、動画別、流入元、コンテンツ種別、登録状態別などで集計し、一部動画の視聴維持指標も取得します。個々の視聴者の氏名・メールアドレスや視聴履歴を取得するAnalytics機能は確認していません。</p>
+        <p><code>youtube.readonly</code> の読み取りでは、チャンネル情報・アップロード一覧・動画メタデータ、公開状態、統計、長さなどを取得します。保存済みの一覧スナップショットは非公開アップロードの動画ID・タイトル・状態などを含むことがあります。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>保存先と期間</h2>
+      <ul>
+        <li>OAuthのリフレッシュトークンは、このMacのmacOS Keychainに保存します。動画編集用とAnalytics用は別項目です。短期間のアクセストークンは処理中のメモリとプロセス間の一時的な受け渡しに限られ、プロジェクトファイルやログに保存する実装は確認していません。</li>
+        <li>OAuthクライアント設定ファイルはプロジェクト外のユーザー領域に置き、所有ユーザーのみが読めるファイル権限で管理します。</li>
+        <li>APIで取得した動画・チャンネルのスナップショット、AnalyticsのJSON/CSV、集計結果はMac上のプロジェクト内に保存します。処理ジャーナルや割当記録には、対象ID、変更前後のメタデータ・公開状態、予約日時、API結果などが含まれる場合があります。コメント投稿記録にはコメントIDや本文ハッシュを保存します。</li>
+        <li>分析スナップショットやジャーナルに自動削除期限を設定する処理は確認していません。運営者本人が必要な記録を見直し、Mac上で手動削除します。端末のバックアップ設定や、運営者が別途複製したファイルの保持期間は、このツールでは管理しません。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>外部サービスへの送信</h2>
+      <p>OAuth認証とYouTube Data API、YouTube Analytics APIの利用時に、Googleへ認証情報・必要なAPI要求を送ります。更新したタイトル・概要欄・カテゴリ・予約日時などは、確認済みの変更としてYouTubeに送信します。質問コメントを投稿すると、その本文はYouTubeに送信され公開されます。</p>
+      <p>動画ファイルのアップロードはこのCLIでは行わず、運営者が別途YouTubeアプリから実行します。このプロジェクトのAPI処理コードから、YouTube APIデータを外部AIサービス、広告業者、データ仲介業者へ自動送信する処理は確認していません。運営者本人は分析データを手動共有していないと申告しています。バックアップや処理記録など、その他のローカル情報の手動共有状況は未確認です。</p>
+      <p>この説明ページ案は静的HTML/CSSのみで、Googleログイン、API呼び出し、入力フォーム、広告、独自アクセス解析、動画埋め込み、外部スクリプトやCookieを使いません。公開ホストは未決定です。公開時には選択したホスティング事業者のアクセス記録等の扱いを確認して追記します。</p>
+    </section>
+
+    <section>
+      <h2>アクセスの取消とローカル情報の削除</h2>
+      <p>Googleアカウントの
+        <a href="https://myaccount.google.com/connections">サードパーティ接続の管理</a>
+        からYouTube APIへのアクセスを取り消せます。動画編集用とAnalytics用は別々の同意です。Googleでのアクセス取消と、Macに保存したKeychain項目・API取得ファイル・処理ジャーナルの削除は別の操作です。現行CLIに、これらをまとめて削除する機能はありません。</p>
+      <p>利用を終えるときは処理を停止し、Googleアカウントで各アクセスを取り消したうえで、MacのKeychainにある各認証項目と、不要な分析スナップショット・処理記録を手動で削除してください。ローカル情報を削除してもYouTube上の動画やGoogleが保持する情報は削除されません。YouTube上の動画はYouTube Studioで管理します。</p>
+    </section>
+
+    <section>
+      <h2>問い合わせ・運営者</h2>
+      <p>公開問い合わせ先は運営者指定の <a href="mailto:shiruseikai@gmail.com">shiruseikai@gmail.com</a> です。運営者の公開名と公開ドメインは未確定です。</p>
+      <p class="note">本ページの公開前に、Macのバックアップや処理記録の保持・手動共有状況、実運用でのコメント投稿、サイトホストについて、本文との相違がないか運営者が確認する必要があります。分析データの手動共有はないとの申告を反映しています。</p>
+    </section>
+    <p class="footnote">未公開草案です。公開・適用開始日は設定していません。</p>
+  </main>
+  <footer class="site-footer"><div class="wrap">知るセカイ YouTube API · 未公開草案</div></footer>
+</body>
+</html>
