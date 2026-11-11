@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>利用条件 | 知るセカイ YouTube API（草案）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <a class="brand" href="index.html">知るセカイ <span>YouTube API</span></a>
+      <nav aria-label="サイト">
+        <a href="index.html">説明</a>
+        <a href="privacy.html">プライバシー</a>
+        <a aria-current="page" href="terms.html">利用条件</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap prose">
+    <p class="draft">公開前レビュー用の草案 · 2026年11月11日</p>
+    <h1>利用条件</h1>
+    <p class="lead">この文書は、知るセカイ YouTube APIの運用範囲を説明するための草案です。公開・適用開始日は未設定であり、現時点で利用契約や法的同意を成立させるものではありません。</p>
+
+    <section>
+      <h2>対象となるツール</h2>
+      <p>対象は、知るセカイのチャンネル運営者本人が、自分のMac上で利用するPython CLIです。一般向けのアカウント登録、他者のチャンネル運用、第三者への認証情報の提供を行うサービスではありません。説明用ウェブページは、OAuthや動画操作を行いません。</p>
+    </section>
+
+    <section>
+      <h2>Google・YouTubeの条件</h2>
+      <p>APIを利用する際は、適用される
+        <a href="https://www.youtube.com/t/terms">YouTube利用規約</a>、
+        Google APIの規約、YouTube API Services User Data Policy、各サービスのポリシーに従います。Google OAuthの同意は、動画のアップロード・公開・コメント投稿を自動的に承認するものではありません。</p>
+      <p>動画編集用の同意スコープは、Google側では動画・評価・コメント・字幕の表示や編集、動画の完全削除を含む広い権限です。CLIに実装されている機能はこの範囲より限定されます。Analyticsは別の読み取り専用認可で、編集用認可と区別されます。詳しいデータの扱いは
+        <a href="privacy.html">プライバシーポリシー</a>
+        をご確認ください。</p>
+    </section>
+
+    <section>
+      <h2>運営者による確認</h2>
+      <ul>
+        <li>動画の権利、音源・素材の利用、タイトル・説明、公開対象、公開日時、YouTube上の申告設定は、送信・予約の前に運営者本人が確認します。</li>
+        <li>動画の予約・メタデータ更新は、対象動画・変更内容・保存状態を確認してから実行します。コード上の検査結果だけで、内容の正しさ、権利の有無、公開可否は保証されません。</li>
+        <li>コメント投稿機能を使う場合、投稿本文と公開先動画を運営者が確認します。投稿されたトップレベルコメントはYouTube上で公開されます。</li>
+        <li>Analyticsの集計値は取得時点・対象期間・YouTubeの集計条件に依存します。視聴者数、収益、動画の成果や審査結果を保証しません。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>停止・アクセス取消</h2>
+      <p>運営者はローカル処理を停止し、
+        <a href="https://myaccount.google.com/connections">Googleアカウントの接続管理</a>
+        から各OAuthアクセスを取り消せます。Google側のアクセス取消と、Mac上の認証情報・取得ファイル・処理記録の削除は別の操作です。詳細は
+        <a href="privacy.html">プライバシーポリシー</a>
+        をご確認ください。認証失効、API制限、通信障害、必要な確認の不足があれば処理を停止する場合があります。</p>
+    </section>
+
+    <section>
+      <h2>運営者・更新</h2>
+      <p>運営者名：知るセカイ チャンネル運営者</p>
+      <p>公開問い合わせ先：<a href="mailto:shiruseikai@gmail.com">shiruseikai@gmail.com</a></p>
+      <p>正式公開時に、公開先・適用開始日を確定し、運営者が内容を承認した後に適用します。</p>
+    </section>
+    <p class="footnote">未公開草案です。利用条件としての適用や法的同意は行っていません。</p>
+  </main>
+  <footer class="site-footer"><div class="wrap">知るセカイ YouTube API · 未公開草案</div></footer>
+</body>
+</html>
