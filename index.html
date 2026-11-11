@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>知るセカイ YouTube API | 説明（草案）</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <a class="brand" href="index.html">知るセカイ <span>YouTube API</span></a>
+      <nav aria-label="サイト">
+        <a aria-current="page" href="index.html">説明</a>
+        <a href="privacy.html">プライバシー</a>
+        <a href="terms.html">利用条件</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="draft">公開前レビュー用の草案 · 2026年11月11日</p>
+    <section class="hero">
+      <p class="eyebrow">知るセカイ · チャンネル運営用</p>
+      <h1>知るセカイ YouTube API</h1>
+      <p class="lead">チャンネル運営者が自分のMacで使う、YouTube動画の状態確認・メタデータ編集・予約設定・読み取り専用の分析を行うローカルツールです。</p>
+      <p>一般向けのアカウント登録サービスや、他の人のGoogleアカウントを接続するサービスは提供していません。このサイトは内容を説明するための静的ページ案で、GoogleへのログインやYouTube APIアクセスを行いません。</p>
+    </section>
+
+    <section class="panel">
+      <h2>このツールでできること</h2>
+      <ul>
+        <li>本人が管理する知るセカイのチャンネルと動画の情報・公開状態を読み取り、対象を照合します。</li>
+        <li>手動でYouTubeへアップロードした動画について、確認済みのタイトル・概要欄・カテゴリや公開予約を編集します。書き込み前に変更計画を確認し、別の動画への誤送信や不明な結果での自動再送を防ぐ仕組みがあります。</li>
+        <li>別に許可を得た読み取り専用のAnalytics認可で、チャンネル・動画の集計視聴指標を取得し、Mac上で分析します。</li>
+        <li>公開動画に対して、内容を確認した質問をチャンネル名義でトップレベルコメントとして投稿するコードがあります。実運用でのコメント投稿はまだ記録されていません。</li>
+      </ul>
+      <p class="note">動画ファイルのYouTubeアップロードや動画削除は、このCLIの機能ではありません。アップロードは運営者が別途YouTubeアプリから行います。</p>
+    </section>
+
+    <section class="panel">
+      <h2>Google権限について</h2>
+      <p>動画編集用のOAuth権限 <code>youtube.force-ssl</code> は、Googleの同意画面上では動画・評価・コメント・字幕の表示、編集、完全削除を含む広い権限として説明されます。このCLIに実装されている動画操作は、情報の読み取り、メタデータ・公開予約の更新、および公開動画のトップレベル質問コメントの読み書きです。動画の削除、評価の変更、字幕の変更は実装していません。</p>
+      <p>Analytics機能は別の同意で <code>yt-analytics.readonly</code> と <code>youtube.readonly</code> を使用します。編集用の認可に自動で含まれるものではなく、分析結果をYouTubeへ書き戻す機能もありません。</p>
+    </section>
+
+    <section class="panel">
+      <h2>詳しい説明</h2>
+      <div class="link-grid">
+        <a class="card-link" href="privacy.html"><strong>プライバシーポリシー</strong><span>取得する情報、保存先、削除とアクセス取消</span></a>
+        <a class="card-link" href="terms.html"><strong>利用条件</strong><span>対象範囲、運用上の確認、YouTubeの適用条件</span></a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>運営・問い合わせ</h2>
+      <p>運営者：知るセカイ チャンネル運営者</p>
+      <p>公開連絡先：<a href="mailto:shiruseikai@gmail.com">shiruseikai@gmail.com</a></p>
+      <p class="note">運営者名と公開するホームページのドメインは未確定です。問い合わせ先として指定されたメールアドレスを掲載しています。連絡フォームや公開Issueへの誘導は設けていません。</p>
+    </section>
+    <p class="footnote">このページはレビュー用の草案です。公開先・連絡先・最終的な内容を確認するまで公開も利用条件としての適用もしません。</p>
+  </main>
+  <footer class="site-footer"><div class="wrap">知るセカイ YouTube API · 未公開草案</div></footer>
+</body>
+</html>
